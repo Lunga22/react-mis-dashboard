@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datamatics MIS & React Dashboard</title>
+    <!-- React and ReactDOM CDNs -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel standalone so JSX runs directly in the browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body style="margin: 0; background: #f8f9fa;">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Dashboard() {
+          const [metrics] = React.useState([
+            { title: 'System Uptime', value: '99.9%', status: 'Optimal' },
+            { title: 'Active PostgreSQL DBs', value: '4 Connections', status: 'Healthy' },
+            { title: 'Pending MIS Reports', value: '0 Queued', status: 'Synchronized' }
+          ]);
+
+          return (
+            <div style={{ fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif', padding: '30px', color: '#333' }}>
+              <header style={{ marginBottom: '20px' }}>
+                <h1 style={{ color: '#003366' }}>Datamatics MIS & React Dashboard</h1>
+                <p style={{ color: '#666' }}>Real-time system telemetry and database monitoring interface.</p>
+              </header>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px' }}>
+                {metrics.map((item, index) => (
+                  <div key={index} style={{ background: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)', borderLeft: '4px solid #003366' }}>
+                    <h4 style={{ margin: '0 0 10px 0', color: '#555' }}>{item.title}</h4>
+                    <div style={{ fontSize: '24px', fontWeight: 'bold', color: '#003366' }}>{item.value}</div>
+                    <span style={{ display: 'inline-block', marginTop: '10px', fontSize: '12px', background: '#e2f0d9', color: '#385723', padding: '3px 8px', borderRadius: '4px' }}>
+                      {item.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        }
+
+        ReactDOM.render(<Dashboard />, document.getElementById('root'));
+    </script>
+</body>
+</html>
